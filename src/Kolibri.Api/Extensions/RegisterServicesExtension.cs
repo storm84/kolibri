@@ -1,3 +1,6 @@
+using Kolibri.Api.Mappers;
+using Kolibri.Api.Repositories;
+
 namespace Kolibri.Api.Extensions;
 
 public static class RegisterServicesExtension
@@ -15,5 +18,9 @@ public static class RegisterServicesExtension
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+
+        services
+            .AddSingleton<IPackageRepository, PackageRepository>()
+            .AddSingleton<IPackageMapper, PackageMapper>();
     }
 }
