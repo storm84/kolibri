@@ -3,7 +3,7 @@ using Kolibri.Api.Models;
 using Kolibri.Api.Repositories;
 using Kolibri.Test.Attributes;
 
-namespace Kolibri.Test.UnitTests;
+namespace Kolibri.Test.UnitTests.Repositories;
 
 public class PackageRepositoryTests
 {
