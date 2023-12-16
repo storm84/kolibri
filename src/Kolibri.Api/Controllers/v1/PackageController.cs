@@ -52,7 +52,7 @@ public class PackageController : ControllerBase
             var response = PackageMapper.Map(package);
             return Ok(response);
         }
-        catch (PackageNotFoundException _)
+        catch (PackageNotFoundException)
         {
             return NotFound();
         }
