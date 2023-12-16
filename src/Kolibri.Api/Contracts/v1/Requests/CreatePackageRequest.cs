@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using Kolibri.Api.Constants;
-using Kolibri.Api.Utils;
 
 namespace Kolibri.Api.Contracts.v1.Requests;
 
@@ -18,17 +17,17 @@ public class CreatePackageRequest(
     [RegularExpression(
         PackageConstants.KolliIdRegExPattern,
         ErrorMessage = PackageConstants.ErrorMessageKolliIdInvalidFormat)]
-    public string KolliId { get; } = kolliId.ThrowIfNullOrWhiteSpace();
+    public string KolliId { get; } = kolliId;
 
     [Range(0, PackageConstants.MaxWeight)]
-    public int Weight { get; } = weight.ThrowIfLessThan(0);
+    public int Weight { get; } = weight;
 
     [Range(0, PackageConstants.MaxSideLength)]
-    public int Length { get; } = length.ThrowIfLessThan(0);
+    public int Length { get; } = length;
 
     [Range(0, PackageConstants.MaxSideLength)]
-    public int Height { get; } = height.ThrowIfLessThan(0);
+    public int Height { get; } = height;
 
     [Range(0, PackageConstants.MaxSideLength)]
-    public int Width { get; } = width.ThrowIfLessThan(0);
+    public int Width { get; } = width;
 }
