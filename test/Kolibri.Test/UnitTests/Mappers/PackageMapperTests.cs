@@ -7,7 +7,7 @@ namespace Kolibri.Test.UnitTests.Mappers;
 public class PackageMapperTests
 {
     [Theory, AutoFake]
-    public void Tests_Map_MapsCorrect(
+    public void Tests_Map_Package_PackageResponse_MapsCorrect(
         Package package,
         PackageMapper sut)
     {
@@ -29,7 +29,7 @@ public class PackageMapperTests
     [InlineAutoFake(20000, 61, 60, 60, false)]
     [InlineAutoFake(20000, 60, 61, 60, false)]
     [InlineAutoFake(20000, 60, 60, 61, false)]
-    public void Test_Map_IsValid_Is_Set_Correct(
+    public void Test_Map_PackageResponse_IsValid_Is_Set_Correct(
         int weight,
         int length,
         int height,
@@ -54,7 +54,7 @@ public class PackageMapperTests
     }
 
     [Theory, AutoFake]
-    public void Test_Map_MapsCorrect_Enumerable(
+    public void Test_Map_EnumerablePackage_EnumerablePackageResponse_MapsCorrect(
         List<Package> packages,
         PackageMapper sut)
     {
