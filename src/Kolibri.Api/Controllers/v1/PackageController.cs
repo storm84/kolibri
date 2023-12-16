@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Kolibri.Api.Constants;
+using Kolibri.Api.Contracts.v1.Requests;
 using Kolibri.Api.Contracts.v1.Responses;
 using Kolibri.Api.Exceptions;
 using Kolibri.Api.Mappers;
@@ -56,5 +57,26 @@ public class PackageController : ControllerBase
         {
             return NotFound();
         }
+    }
+
+    [HttpPost(Name = nameof(CreatePackage))]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType<ProblemDetails>(StatusCodes.Status500InternalServerError)]
+    public IActionResult CreatePackage(CreatePackageRequest packageRequest)
+    {
+        packageRequest.ThrowIfNull();
+
+        var packageToAdd = PackageMapper.Map(packageRequest);
+        var success = PackageRepository.AddPackage(packageToAdd);
+        if (success)
+        {
+            return CreatedAtAction(nameof(GetPackage), new { kolliId = packageRequest.KolliId }, packageToAdd);
+        }
+
+        return Problem(
+            "failed to create package",
+            null,
+            StatusCodes.Status500InternalServerError,
+            "Error");
     }
 }
