@@ -1,4 +1,5 @@
 using Kolibri.Api.Constants;
+using Kolibri.Api.Contracts.v1.Requests;
 using Kolibri.Api.Contracts.v1.Responses;
 using Kolibri.Api.Models;
 using Kolibri.Api.Utils;
@@ -9,6 +10,7 @@ public interface IPackageMapper
 {
     PackageResponse Map(Package package);
     IEnumerable<PackageResponse> Map(IEnumerable<Package> packages);
+    Package Map(CreatePackageRequest packageRequest);
 }
 
 public class PackageMapper : IPackageMapper
@@ -35,4 +37,14 @@ public class PackageMapper : IPackageMapper
            package.Length <= PackageConstants.MaxSideLength &&
            package.Height <= PackageConstants.MaxSideLength &&
            package.Width <= PackageConstants.MaxSideLength;
+
+    public Package Map(CreatePackageRequest packageRequest)
+    {
+        return new Package(
+            packageRequest.KolliId,
+            packageRequest.Weight,
+            packageRequest.Length,
+            packageRequest.Height,
+            packageRequest.Width);
+    }
 }

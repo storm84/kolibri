@@ -1,3 +1,4 @@
+using Kolibri.Api.Contracts.v1.Requests;
 using Kolibri.Api.Mappers;
 using Kolibri.Api.Models;
 using Kolibri.Test.Attributes;
@@ -75,5 +76,21 @@ public class PackageMapperTests
                     x.Height == package.Height &&
                     x.Width == package.Width);
         }
+    }
+
+    [Theory, AutoFake]
+    public void Test_Map_CreatePackageRequest_Package_MapsCorrect(
+        CreatePackageRequest request,
+        PackageMapper sut)
+    {
+        // Act
+        var actual = sut.Map(request);
+
+        // Assert
+        Assert.Equal(request.KolliId, actual.KolliId);
+        Assert.Equal(request.Weight, actual.Weight);
+        Assert.Equal(request.Length, actual.Length);
+        Assert.Equal(request.Height, actual.Height);
+        Assert.Equal(request.Width, actual.Width);
     }
 }
