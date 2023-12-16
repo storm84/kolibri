@@ -6,3 +6,7 @@ WebApplication
     .Build()
     .ConfigureApplication()
     .Run();
+
+public partial class Program
+{
+}
